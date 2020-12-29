@@ -1,24 +1,18 @@
-package Menu;
+package menu;
 
 import java.util.Scanner;
 
-public class MainMenu {
+public class MainMenu implements Menu{
     private final Scanner in = new Scanner(System.in);
     //auth
 
     public MainMenu(){
         System.out.println("Добро пожаловать в систему PizzaPresto <3");
-        authMenu();
+        menu();
     }
 
-    private void printMainMenu(){
-        System.out.println("1. Войти как пользователь");
-        System.out.println("2. Войти как пиццамейкер");
-        System.out.println("3. Войти как администратор");
-        System.out.println("0. Выход");
-    }
-
-    private void authMenu(){
+    @Override
+    public void menu() {
         while(true) {
             printMainMenu();
             String choice = in.next();
@@ -46,5 +40,12 @@ public class MainMenu {
                     System.out.println("Ошибка, попробуй ещё раз..");
             }
         }
+    }
+
+    private void printMainMenu(){
+        System.out.println("1. Войти как пользователь");
+        System.out.println("2. Войти как пиццамейкер");
+        System.out.println("3. Войти как администратор");
+        System.out.println("0. Выход");
     }
 }
