@@ -1,8 +1,39 @@
 package menu;
 
 public class PizzaMakerMenu implements Menu{
+    public PizzaMakerMenu() {
+        menu();
+    }
+
     @Override
     public void menu() {
-        System.out.println("");
+        while(true){
+            printBasicPartOfMenu();
+            String choice = in.next();
+            switch (choice){
+                case "1":
+                    System.out.println("1. Просмотр активных заказов");
+                    break;
+                case "2":
+                    System.out.println("2. Выполнение заказа");
+                    break;
+                case "3":
+                    System.out.println("3. Отчёт");
+                    break;
+                case "0":
+                    return;
+                default:
+                    System.out.println("Ошибка, попробуй ещё раз..");
+                    break;
+            }
+        }
+    }
+
+    private void printBasicPartOfMenu(){
+        System.out.println("\tМеню пицца-мейкера");
+        System.out.println("1. Просмотр активных заказов");
+        System.out.println("2. Выполнение заказа");
+        System.out.println("3. Отчёт");
+        System.out.println("0. Выход");
     }
 }

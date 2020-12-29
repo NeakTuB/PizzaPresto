@@ -1,9 +1,6 @@
 package menu;
 
-import java.util.Scanner;
-
 public class MainMenu implements Menu{
-    private final Scanner in = new Scanner(System.in);
     //auth
 
     public MainMenu(){
