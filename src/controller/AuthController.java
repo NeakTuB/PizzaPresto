@@ -1,6 +1,6 @@
-package Controller;
+package controller;
 
-import Service.AuthService;
+import service.AuthService;
 
 public class AuthController {
     private final AuthService authService;
