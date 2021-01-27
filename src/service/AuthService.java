@@ -1,5 +1,6 @@
 package service;
 
+import entity.Customer;
 import entity.User;
 import repo.AdminRepo;
 import repo.CustomerRepo;
@@ -37,6 +38,11 @@ public class AuthService {
     public void addAdmin(Map<String, String> loginAndPassword){
         User addAdmin = new User(loginAndPassword);
         adminRepo.add(addAdmin);
+    }
+
+    public boolean addCustomer(Map<String, String> loginAndPassword, Map<String, String> nameAndSurname){
+        Customer addCustomer = new Customer(loginAndPassword, nameAndSurname);
+        return customerRepo.add(addCustomer);
     }
 
 

@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class AdminRepo implements Serializable {
-    private transient static AdminRepo adminRepoInstance;
+    private static AdminRepo adminRepoInstance;
 
-    private transient final String adminFilePath = "adminRepo.txt";
+    private final String adminFilePath = "adminRepo.txt";
     private ArrayList<User> admins;
 
     public AdminRepo(){
@@ -55,5 +55,15 @@ public class AdminRepo implements Serializable {
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void viewAdmins(){
+        System.out.println("\tСписок администраторов:");
+        for(User user:admins){
+            System.out.println("Login: " + user.getLogin() + "  Password: " + user.getPassword());
+        }
+
+
+
     }
 }

@@ -1,6 +1,9 @@
 package menu;
 
+import java.util.Scanner;
+
 public class PizzaMakerMenu implements Menu{
+    private final Scanner in = new Scanner(System.in);
     public PizzaMakerMenu() {
         menu();
     }
