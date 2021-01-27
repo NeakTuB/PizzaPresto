@@ -1,7 +1,15 @@
 package menu;
 
+import controller.CustomerController;
+
+import java.util.Scanner;
+
 public class CustomerMenu implements Menu{
+    private final Scanner in = new Scanner(System.in);
+    private final CustomerController customerController;
+
     public CustomerMenu() {
+        customerController = new CustomerController();
         menu();
     }
 
@@ -12,7 +20,7 @@ public class CustomerMenu implements Menu{
             String choice = in.next();
             switch(choice){
                 case "1":
-                    System.out.println("1. Сделать заказ");
+                    customerController.newOrder();
                     break;
                 case "2":
                     System.out.println("2. Просмотреть историю заказов");

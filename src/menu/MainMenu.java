@@ -1,13 +1,15 @@
 package menu;
 
 import controller.AuthController;
+import hepler.StringHelper;
+
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
+import java.util.Scanner;
 
 public class MainMenu implements Menu{
+    private final Scanner in = new Scanner(System.in);
     private final AuthController authController;
 
     public MainMenu(){
@@ -23,7 +25,7 @@ public class MainMenu implements Menu{
             String choice = in.next();
             switch (choice) {
                 case "1": {  //custom1er
-                    if(authController.login("Customer", getLoginAndPassword())){
+                    if(authController.login("Customer", StringHelper.getLoginAndPassword())){
                         System.out.println("\tВход выполнен!");
                         new CustomerMenu();
                     }
@@ -33,7 +35,7 @@ public class MainMenu implements Menu{
                     break;
                 }
                 case "2": {  //pizzaMaker
-                    if(authController.login("PizzaMaker", getLoginAndPassword())){
+                    if(authController.login("PizzaMaker", StringHelper.getLoginAndPassword())){
                         System.out.println("\tВход выполнен!");
                         new PizzaMakerMenu();
                     }
@@ -45,16 +47,22 @@ public class MainMenu implements Menu{
                 case "3": {  //admin
                     if(authController.getNumberOfAdmins() == 0){
                         System.out.println("В системе нет администраторов! Необходимо зарегестрироваться!");
-                        authController.addAdmin(getLoginAndPassword());
+                        authController.addAdmin(StringHelper.getLoginAndPassword());
                         System.out.println("Регистрация выполнена!");
                     }
-                    if(authController.login("Admin", getLoginAndPassword())){
+                    if(authController.login("Admin", StringHelper.getLoginAndPassword())){
                         System.out.println("\tВход выполнен!");
                         new AdminMenu();
                     }
                     else{
                         System.out.println("Введён неверный логин или пароль");
                     }
+                    break;
+                }
+                case "4": { //registration
+                    if(authController.registration(StringHelper.getLoginAndPassword(), StringHelper.getNameAndSurname()))
+                        System.out.println("Регистрация выполнена!");
+                    else System.out.println("Ошибка регистрации!");
                     break;
                 }
                 case "0": {  //exit
@@ -71,16 +79,7 @@ public class MainMenu implements Menu{
         System.out.println("1. Войти как пользователь");
         System.out.println("2. Войти как пиццамейкер");
         System.out.println("3. Войти как администратор");
+        System.out.println("4. Регистрация");
         System.out.println("0. Выход");
-    }
-
-    private Map<String, String> getLoginAndPassword(){
-        System.out.println("Введите логин: ");
-        String login = in.next();
-        System.out.println("Введите пароль: ");
-        String password = in.next();
-        Map<String, String> loginAndPassword = new HashMap<>();
-        loginAndPassword.put(login, password);
-        return loginAndPassword;
     }
 }

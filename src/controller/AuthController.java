@@ -29,4 +29,8 @@ public class AuthController {
         authService.addAdmin(loginAndPassword);
     }
 
+    public boolean registration(Map<String, String> loginAndPassword, Map<String, String> nameAndSurname){
+        return authService.addCustomer(loginAndPassword, nameAndSurname);
+    }
+
 }

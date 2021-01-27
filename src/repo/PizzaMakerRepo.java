@@ -1,5 +1,6 @@
 package repo;
 
+import entity.Customer;
 import entity.PizzaMaker;
 import entity.User;
 
@@ -11,12 +12,12 @@ public class PizzaMakerRepo implements Serializable {
     private transient static PizzaMakerRepo pizzaMakerRepoInstance;
 
     private transient final String pizzaMakerFilePath = "pizzaMakerRepo.txt";
-    private ArrayList<User> pizzaMakers;
+    private ArrayList<PizzaMaker> pizzaMakers;
 
     public PizzaMakerRepo(){
         pizzaMakers = new ArrayList<>();
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(pizzaMakerFilePath))) {
-            pizzaMakers = (ArrayList<User>) in.readObject();
+            pizzaMakers = (ArrayList<PizzaMaker>) in.readObject();
         }catch(EOFException e){
         }catch(IOException | ClassNotFoundException e){
             e.printStackTrace();
@@ -47,6 +48,14 @@ public class PizzaMakerRepo implements Serializable {
             out.writeObject(pizzaMakers);
         }catch(Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public void viewPizzaMakers(){
+        System.out.println("\tСписок пицца-мейкеров:");
+        for(PizzaMaker pizzaMaker :pizzaMakers){
+            System.out.println("Login: " + pizzaMaker.getLogin() + "  Password: " + pizzaMaker.getPassword());
+            System.out.println("\tИмя: " + pizzaMaker.getName() + "  Фамилия: " + pizzaMaker.getSurname());
         }
     }
 }

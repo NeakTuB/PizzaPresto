@@ -1,30 +1,35 @@
 package menu;
 
+import controller.AdminController;
+import hepler.StringHelper;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 public class AdminMenu implements Menu{
+    private final Scanner in = new Scanner(System.in);
+    private final AdminController adminController;
+
     public AdminMenu() {
+        adminController = new AdminController();
         menu();
     }
 
     @Override
     public void menu() {
+        //adminController.addPizza();
         while(true){
             printBasicPartOfMenu();
             String choice = in.next();
             switch (choice) {
-                case "1":
-                    System.out.println("1. Просмотр данных");
+                case "1": //view data
+                    new ViewDataSubMenu(adminController);
                     break;
-                case "2":
-                    System.out.println("2. Редактирование данных");
+                case "2": //sort data
                     break;
-                case "3":
-                    System.out.println("3. Сортировка данных");
-                    break;
-                case "4":
-                    System.out.println("4. Добавление новых пользователей");
-                    break;
-                case "5":
-                    System.out.println("5. Вывод отчёта");
+                case "3": //add PizzaMaker
+                    adminController.addPizzaMaker(StringHelper.getLoginAndPassword(), StringHelper.getNameAndSurname());
                     break;
                 case "0":
                     return;
@@ -38,10 +43,8 @@ public class AdminMenu implements Menu{
     private void printBasicPartOfMenu(){
         System.out.println("\tМеню администратора");
         System.out.println("1. Просмотр данных");
-        System.out.println("2. Редактирование данных");
-        System.out.println("3. Сортировка данных");
-        System.out.println("4. Добавление новых пользователей");
-        System.out.println("5. Вывод отчёта");
+        System.out.println("2. Сортировка данных");
+        System.out.println("3. Добавление новых пользователей");
         System.out.println("0. Выход");
     }
 }
